@@ -1,8 +1,5 @@
 # How TO Use Serializers In Django Rest Framework (DRF)
-## Introduction
-### Overview of Django Rest Framework (DRF)
-### HOW TO SERIALIZE DATA IN NATIVE PYTHON
-### Serialing and Deserializing In DRF
+
 ## Introduction:
 Django Rest Framework (DRF) is a python framework built on django, it is used for building robust and scalable web Application Programme Interface (APIs). Django Rest Framework (DRF) extends Django by providing tools for building robust and scalable web APIs. DRF has a lot of amazing features that leds to efficiency and effective building of APIs. Simplified use of serializers is one of the added layer of DRF.
 ￼
