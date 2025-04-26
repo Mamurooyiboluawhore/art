@@ -306,7 +306,7 @@ DRF handles serializing and deserializing elegantly, Serializers in DRF make it 
 - [Serializer Documentation](https://www.django-rest-framework.org/api-guide/serializers/)
 - [ModelSerializer Documentation](https://www.django-rest-framework.org/api-guide/serializers/modelserializer)
 - [DRF Tutorial](https://www.django-rest-framework.org/tutorial/1-serialization/)
-- [DRF API Guide](https://www.django-rest-framework.org/api-guide/
+- [DRF API Guide](https://www.django-rest-framework.org/api-guide/)
 
 
 
