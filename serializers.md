@@ -1,10 +1,8 @@
 # How TO Use Serializers In Django Rest Framework (DRF)
 
 ## Introduction:
-Django Rest Framework (DRF) is a Python framework built on django, it is used for building robust and scalable web Application Programme Interface (APIs). Django Rest Framework (DRF) extends Django by providing tools for building robust and scalable web APIs. DRF has a lot of amazing features that lead to the efficiency and effective building of APIs. Simplified use of serializers is one of the added layers of DRF.
-
-Django Rest Framework (DRF) is a powerful and flexible toolkit for building web APIs. It
-provides a lot of features that make building Application Programme Interface (APIs) easier and faster. Some of the key features of DRF include:
+Django Rest Framework (DRF) is a powerful and flexible toolkit built on top of Django, designed to help developers build robust and scalable web Application Programming Interfaces (APIs) efficiently.
+Some of the key features of DRF include:
 -   Viewsets and routers
 -   Support for authentication and permission
 -   Support for file uploads and downloads
@@ -22,14 +20,13 @@ Serialization is converting an object or data structure into a format that can b
 In a simpler term, one can also say serializing is a process of converting complex, native data structure such as objects, arrays, or classes—into a simpler, standard format like JSON (JavaScript Object Notation). This helps data to be easily read by machine and humans and allows for more seamless storage.
 
 Some importance of Serializers include custom representation; the flexibility to choose what field and object you want to include or exclude, format data or even calculate additional fields to include in the output. 
-Serializers enable ease in integrations with application Programme Interface(APIs). And a lot more benefits
+Serializers enable ease in integrations with Application Programming Interface (API). And a lot more benefits
 
-Deserialization is the reverse process of serialization. It is the process of converting a serialized data back into its original form. This is typically done when the data is retrieved from a file or database and needs
-
+Deserialization, on the other hand, is the reverse — it converts serialized data (like JSON) back into complex native Python objects. Deserialization is essential for retrieving and processing data received from clients or external APIs.
 
 ### HOW TO SERIALIZE DATA IN NATIVE PYTHON
 
-In native Python, serializing and deserializing of data can be done using the built-in `pickle`, `marshall` and `json` modules. The example below will the illustrated using the built-in `json` module. This module can be used to transmit data between different languages, human-readable, secure for untrusted data. Below is an example of how to serialize a Python dictionary into a JSON string:
+In native Python, serializing and deserializing of data can be done using the built-in `pickle`, `marshal` and `json` modules. The example below will be illustrated using the built-in `json` module. This module can be used to transmit data between different languages, human-readable, secure for untrusted data. Below is an example of how to serialize a Python dictionary into a JSON string:
 
 ```python
 import json
@@ -72,8 +69,9 @@ This is how to serialize and deserialize in Python without the use of any framew
 
 
 ## HOW TO SERIALIZE AND DESERIALIZE DATA IN DJANGO REST FRAMEWORK(DRF)
-Python provides basic tools for serializing and deserialing data, whereas, DRF simplifies the process when working with Django models and APIs. DRF's `serializers.Serializer` class gives some compelling functionality to handle complex data transmissions between Python objects and JSON
-Below is a step-by-step guide on how to serialize and deserialize in DRF. This would be demonstrated by creating a sample project. 
+DRF serializers are crucial tools for converting complex Django data types like models into JSON, and parsing JSON back into Django objects. This is especially useful when handling API request and response cycles, making it easier to build powerful APIs quickly.
+While Python provides basic tools for serializing and deserializing data, DRF simplifies the process when working with Django models and APIs. DRF's `serializers.Serializer` class offers powerful functionality to handle complex data transmissions between Python objects and JSON
+Below is a step-by-step guide on how to serialize and deserialize in DRF, demonstrated by creating a sample project. 
 
 
 ### Set up project Environment
@@ -109,12 +107,14 @@ django-admin startproject sampleProject
 ```bash
 cd sampleProject
 ```
-6. Rename the Nested `sampleProject`:  Rename the `sampleProject` app that contains the `settings.py` file to `core` to avoid naming conflict. Use the command below
+6. Rename the Nested `sampleProject`: When Django creates a project, it automatically nests a folder with the same name as your project (in this case, `sampleProject`). To avoid naming conflicts and confusion later on (especially when dealing with import paths), it is a best practice to rename the inner folder to something else, like `core`.
+
+Use the command below to rename it:
 
 ```bash
-mv sample-project core
+mv sampleProject core
 ```
-> This renames the sample project that contains the settings.py file to `core`. This best practice as it is done to avoid conflict since there is a parent sampleProject and a child `sampleProject`, it is only ideal to rename one.
+> This command renames the inner `sampleProject` folder (the one containing `settings.py`) to `core`. This helps keep your project structure clean and avoids conflicts between the parent and nested folders.
 
 7. Configure Settings: Update settings.py, urls.py, and wsgi.py to point to the `core` app as discussed in your draft.
 Navigate to your `core` app
@@ -147,15 +147,15 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 ```
 > This will point to the renamed `core` app. It is a way of telling your computer that all the basic configurations are now in the `core` app.
  
-Save and exit
+Save your changes and exit.
 
-Run your server to ensure everything is working as indeed.
+Run your server to ensure everything is working correctly.
 ```bash
 python manage.py runserver
 ```
 
-#### Example Blog CRUD API
-Create a sample blog `CRUD` endpoints to display how to serialize and deserialize data on DRF.
+#### Example Book CRUD API
+Create a sample book `CRUD` endpoints to display how to serialize and deserialize data on DRF.
 
 1. Create the `book` app: Run this command below to create a `book` app
 
@@ -184,7 +184,7 @@ INSTALLED_APPS = [
 ```
 > This will include the `book` app to the list of installed apps
 
-Save and exit
+Save your changes and exit.
 
 Navigate to the `book` app.
 
@@ -196,30 +196,28 @@ cd book
 ```python
 from django.db import models
 
-
 class Books(models.Model):
-title = models.CharField(max_length=255)
-content = models.TextField()
-created_at = models.DateTimeField(auto_now_add=True)
-updated_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 ```
-Save and exit
-
+Save your changes and exit.
 > This will create a `Books` model with fields for title, content, created
 at, and updated at
 
 
 5. Create the Serializer:
 
-In book/serializers.py, create a serializer for the BlogPost model:
+In book/serializers.py, create a serializer for the Book model:
 ```python
 from rest_framework import serializers
 from .models import Books
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
- model = BlogPost
+ model = Books
  fields = ['id', 'title', 'content', 'created_at']
 
 ```
@@ -238,7 +236,7 @@ This is the base serializer class in DRF. It is used when you want full control 
 ```python
 from rest_framework import serializers
 
-class BlogPostSerializer(serializers.Serializer):
+class BookSerializer(serializers.Serializer):
  title = serializers.CharField(max_length=255)
  content = serializers.CharField()
  author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
@@ -253,10 +251,10 @@ This is a shortcut for automatically creating a serializer class based on a Djan
 
 ```python
 from rest_framework import serializers
-from .models import BlogPost
+from .models import Book
 
 
-class BlogPostSerializers(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
  fields = (
             'id',
@@ -265,7 +263,7 @@ class BlogPostSerializers(serializers.ModelSerializer):
             'author',
             'created_at',
  )
- model = BlogPost
+ model = Books
 
 ```
 You don’t need to manually define the fields if they already exist in the model. ModelSerializer handles most things under the hood.
@@ -285,7 +283,7 @@ You don’t need to manually define the fields if they already exist in the mode
 
 To use serializers in DRF, create a view that handles `HTTP` requests (GET, POST, UPDATE, DELETE). Here is an example below;
 
-```bash
+```python
 from rest_framework.generics import ListCreateAPIView
 from .models import Books
 from .serializers import BookSerializer
@@ -295,11 +293,41 @@ class BookListCreateView(ListCreateAPIView):
     serializer_class = BookSerializer
 ```
 This view will allow clients to list all books or create new ones.
+ 
+In the `book`app, create a `urls.py` file 
+```bash
+touch urls.py
+```
+Open and edit the `urls.py` file
+```python
+# book/urls.py
+from django.urls import path
+from .views import BookListCreateView
 
+urlpatterns = [
+    path('books/', BookListCreateView.as_view(), name='book-list-create'),
+]
+
+```
+Save and exit
+Navigate to the `core/urls.py` And in your `core/urls.py`:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('book.urls')),
+]
+
+```
 ## Conclusion
 In this tutorial, we have covered the basics of serializers in Django Rest Framework. We have learned how to create serializers from models, how to use them in views, and the differences between `serializers.Serializer` and `serializers.ModelSerializer`. We have also covered how to use serializers in views to handle HTTP requests.
 
-DRF handles serializing and deserializing elegantly, Serializers in DRF make it easy to convert complex data into simple formats like JSON, which is essential for API communication. By using DRF’s built-in serializers, developers can quickly build and manage APIs without needing to manually handle the intricacies of serialization and deserialization.
+DRF handles serializing and deserializing elegantly, Serializers in DRF make it easy to convert complex data into simple formats like JSON, which is essential for API communication. By using DRF’s built-in serializers, developers can quickly build and manage APIs without needing to manually handle the intricacies of serialization and deserialization. 
+
+Mastering serializers is a key step toward building powerful APIs with Django Rest Framework. By understanding how to control data flow between your application and the outside world, you'll be able to build scalable, maintainable, and secure web services faster and more confidently!
 
 ## Further Reading
 - [DRF Documentation](https://www.django-rest-framework.org/)
