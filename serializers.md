@@ -22,7 +22,7 @@ In a simpler term, one can also say serializing is a process of converting compl
 Some importance of Serializers include custom representation; the flexibility to choose what field and object you want to include or exclude, format data or even calculate additional fields to include in the output. 
 Serializers enable ease in integrations with Application Programming Interface (API). And a lot more benefits
 
-Deserialization, on the other hand, is the reverse — it converts serialized data (like JSON) back into complex native Python objects. Deserialization is essential for retrieving and processing data received from clients or external APIs.
+Deserialization, on the other hand, is the reverse it converts serialized data (like JSON) back into complex native Python objects. Deserialization is essential for retrieving and processing data received from clients or external APIs.
 
 ### HOW TO SERIALIZE DATA IN NATIVE PYTHON
 
