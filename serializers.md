@@ -17,7 +17,7 @@ and a lot more
 Serialization is converting an object or data structure into a format that can be easily stored or transmitted. This typically involves converting the object into a byte stream or a textual format like JavaScript Object Notation (JSON) or eXtensible Markup Language (XML). The data can be stored in a file or database as soon as it is serialized.
 
 
-In a simpler term, one can also say serializing is a process of converting complex, native data structure such as objects, arrays, or classes—into a simpler, standard format like JSON (JavaScript Object Notation). This helps data to be easily read by machine and humans and allows for more seamless storage.
+In a simpler term, one can also say serializing is a process of converting complex, native data structure such as objects, arrays, or classes into a simpler, standard format like JSON (JavaScript Object Notation). This helps data to be easily read by machine and humans and allows for more seamless storage.
 
 Some importance of Serializers include custom representation; the flexibility to choose what field and object you want to include or exclude, format data or even calculate additional fields to include in the output. 
 Serializers enable ease in integrations with Application Programming Interface (API). And a lot more benefits
